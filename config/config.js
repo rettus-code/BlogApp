@@ -8,7 +8,7 @@ var config = convict({
   env: {
     doc: 'The application environment.',
     format: ['prod', 'dev', 'test'],
-    default: 'test',
+    default: 'prod',
     env: 'NODE_ENV'
   },
   port: {
