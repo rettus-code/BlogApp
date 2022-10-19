@@ -96,8 +96,8 @@ app.all('*', function(req, res) {
 });
 
 const server = https.createServer({
-	key: fs.readFileSync('server.key'),
-	cert: fs.readFileSync('server.cert')
+	key: fs.readFileSync('host.key'),
+	cert: fs.readFileSync('host.cert')
 }, app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })

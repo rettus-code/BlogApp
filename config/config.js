@@ -8,7 +8,7 @@ var config = convict({
   env: {
     doc: 'The application environment.',
     format: ['prod', 'dev', 'test'],
-    default: 'dev',
+    default: 'test',
     env: 'NODE_ENV'
   },
   port: {
@@ -46,7 +46,7 @@ var config = convict({
     },
     db_url: {
       format: '*',
-      default: 'http://localhost:27017/',
+      default: 'mongodb://localhost:27017/',
       env: 'DB_URL'
     },
     password: {
