@@ -95,7 +95,7 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-app.use(enforce.HTTP({ trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 const server = http.createServer({
 	key: fs.readFileSync('host.key'),
 	cert: fs.readFileSync('host.cert')
