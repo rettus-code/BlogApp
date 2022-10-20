@@ -46,6 +46,7 @@ const blog_db_url =
 	blogDB +
 	'?retryWrites=true&w=majority';
 
+	
 const dbConnection = mongoose.connect(blog_db_url, (err) => {
   if(err){
     console.log(err)
