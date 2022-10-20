@@ -3,7 +3,7 @@ const express = require('express');
 const config = require('./config/config');
 const compression = require ('compression');
 const helmet = require('helmet');
-const https= require("https");
+const http= require("http");
 const fs = require('fs')
 
 
@@ -95,7 +95,7 @@ app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
 
-const server = https.createServer({
+const server = http.createServer({
 	key: fs.readFileSync('host.key'),
 	cert: fs.readFileSync('host.cert')
 }, app).listen(port,() => {
