@@ -15,7 +15,7 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
-var enforce = require('express-sslify');
+
 
 const User = require("./models/user");
 
@@ -95,11 +95,7 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
-const server = http.createServer({
-	key: fs.readFileSync('host.key'),
-	cert: fs.readFileSync('host.cert')
-}, app).listen(port,() => {
+const server = http.createServer(app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
 
