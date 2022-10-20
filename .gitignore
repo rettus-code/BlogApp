@@ -1,6 +1,6 @@
 .env
 .DS_Store
-server.cert
-server.key
+host.cert
+host.key
 node_modules/
 /*.env
