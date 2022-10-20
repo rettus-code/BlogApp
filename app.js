@@ -15,7 +15,7 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
-
+var enforce = require('express-sslify');
 
 const User = require("./models/user");
 
@@ -46,7 +46,7 @@ const blog_db_url =
 	blogDB +
 	'?retryWrites=true&w=majority';
 
-	
+
 const dbConnection = mongoose.connect(blog_db_url, (err) => {
   if(err){
     console.log(err)
@@ -95,7 +95,7 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-
+app.use(enforce.HTTP({ trustProtoHeader: true }));
 const server = http.createServer({
 	key: fs.readFileSync('host.key'),
 	cert: fs.readFileSync('host.cert')
