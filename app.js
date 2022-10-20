@@ -19,7 +19,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 
 const User = require("./models/user");
 
-const userRouter = require('./routes/user.routes');
+const userRouter = require('./BlogApp/routes/user.routes');
 const postRouter = require('./routes/post.routes');
 
 
