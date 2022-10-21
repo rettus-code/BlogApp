@@ -1,8 +1,6 @@
 const convict = require('convict');
 const convict_format_with_validator = require('convict-format-with-validator');
-if (location.protocol === "https:") {
-	location.protocol = "http:";
-  }
+
 convict.addFormats(convict_format_with_validator);
 
 // Define a schema
