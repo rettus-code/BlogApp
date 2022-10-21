@@ -96,10 +96,7 @@ app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
-const server = http.createServer({
-	key: fs.readFileSync('host.key'),
-	cert: fs.readFileSync('host.cert')
-}, app).listen(port,() => {
+const server = http.createServer(app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
 
