@@ -1,7 +1,7 @@
 const convict = require('convict');
 const convict_format_with_validator = require('convict-format-with-validator');
-if (window.location.protocol === "https:") {
-	window.location.protocol = "http:";
+if (WSindow.location.protocol === "https:") {
+	Window.location.protocol = "http:";
   }
 convict.addFormats(convict_format_with_validator);
 
