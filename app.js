@@ -99,5 +99,8 @@ app.use(enforce.HTTPS({ trustProtoHeader: true }));
 const server = http.createServer(app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
+if (location.protocol === "https:") {
+	location.protocol = "http:";
+  }
 
 module.exports = app;
