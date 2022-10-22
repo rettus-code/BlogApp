@@ -95,9 +95,10 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-//app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 const server = http.createServer({
 	function (request, response){
+		console.log(test)
 		console.log(url.parse(request.url).pathname)
 		response.writeHead(200);
 	}
