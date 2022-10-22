@@ -95,8 +95,13 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-// app.use(enforce.HTTPS({ trustProtoHeader: true }));
-const server = http.createServer(app).listen(port,() => {
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
+const server = http.createServer({
+	function (request, response){
+		console.log(url.parse(request.url).pathname)
+		response.writeHead(200);
+	}
+}, app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
 
