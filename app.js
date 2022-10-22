@@ -85,17 +85,7 @@ passport.deserializeUser(function(id, done) {
 
 app.use(function(req, res, next) {
 	res.locals.isAuthenticated=req.isAuthenticated();
-	res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  res.setHeader('Cross-origin-Embedder-Policy', 'require-corp');
-  res.setHeader('Cross-origin-Opener-Policy','same-origin');
-
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200)
-  } else {
-    next()
-  }
+	next();
 });
 
 app.use('/user', userRouter);
@@ -105,14 +95,8 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
-const server = http.createServer({
-	function (request, response){
-		console.log(test)
-		console.log(url.parse(request.url).pathname)
-		response.writeHead(200);
-	}
-}, app).listen(port,() => {
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
+const server = http.createServer(app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
 
