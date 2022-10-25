@@ -62,7 +62,7 @@ var config = convict({
     format: '*',
     default: "",
     sensitive: true,
-    env: SESSION_SECRET
+    env: "SESSION_SECRET"
   },
   test_username: {
     doc: 'Secret used for session cookies and CSRF tokens',
