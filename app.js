@@ -21,6 +21,7 @@ const User = require("./models/user");
 
 const userRouter = require('./routes/user.routes');
 const postRouter = require('./routes/post.routes');
+const { hostname } = require('os');
 
 
 const app = express();
@@ -96,7 +97,10 @@ app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
-const server = https.createServer(app).listen(port,() => {
+const server = https.createServer({
+	key: host.key,
+	cert: host.cert
+},app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
 
