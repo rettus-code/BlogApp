@@ -60,7 +60,7 @@ const redis_client = new Redis({
   connectTimeout: 10000,
     host: config.get('redis_host')
 });
-/*
+
 app.use(
 	session({
 		secret: config.get('secret'),
@@ -73,19 +73,19 @@ app.use(
 		cookie: { secure: 'auto' }
 	})
 );
-*/
-app.use(
-	session({
-		secret: config.get('secret'),
-		resave: false,
-    store: MongoStore.create({
-      mongoUrl: blog_db_url,
-      ttl: 2 * 24 * 60 * 60
-    }),
-		saveUninitialized: false,
-		cookie: { secure: 'auto' }
-	})
-);
+
+// app.use(
+// 	session({
+// 		secret: config.get('secret'),
+// 		resave: false,
+//     store: MongoStore.create({
+//       mongoUrl: blog_db_url,
+//       ttl: 2 * 24 * 60 * 60
+//     }),
+// 		saveUninitialized: false,
+// 		cookie: { secure: 'auto' }
+// 	})
+// );
 
 
 
