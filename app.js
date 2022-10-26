@@ -15,6 +15,8 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
+const Redis = require('ioredis');
+const RedisStore = require('connect-redis')(session);
 //var enforce = require('express-sslify');
 
 const User = require("./models/user");
@@ -53,7 +55,25 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
     console.log(err)
   }
 });
-
+const redis_client = new Redis({
+    port: config.get('redis_port'),
+  connectTimeout: 10000,
+    host: config.get('redis_host')
+});
+/*
+app.use(
+	session({
+		secret: config.get('secret'),
+		resave: false,
+	store: new RedisStore({
+		client: redis_client,
+		ttl: 2 * 24 * 60 * 60
+	}),
+		saveUninitialized: false,
+		cookie: { secure: 'auto' }
+	})
+);
+*/
 app.use(
 	session({
 		secret: config.get('secret'),
