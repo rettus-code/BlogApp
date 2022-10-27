@@ -54,42 +54,40 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
   }
 });
 
-app.use(
-	session({
-		secret: config.get('secret'),
-		resave: false,
-    store: MongoStore.create({
-      mongoUrl: blog_db_url,
-      ttl: 2 * 24 * 60 * 60
-    }),
-		saveUninitialized: false,
-		cookie: { secure: 'auto' }
-	})
-);
+// app.use(
+// 	session({
+// 		secret: config.get('secret'),
+// 		resave: false,
+//     store: MongoStore.create({
+//       mongoUrl: blog_db_url,
+//       ttl: 2 * 24 * 60 * 60
+//     }),
+// 		saveUninitialized: false,
+// 		cookie: { secure: 'auto' }
+// 	})
+// );
 // const redis_client = new Redis({
 //     port: config.get('redis_port'),
 //   connectTimeout: 10000,
 //     host: config.get('redis_host')
 // });
-const redis = require("redis")
-let redisClient = redis.createClient( {port: config.get('redis_port')});
-console.log(redisClient);
-redisClient.on('ready', ()=> {
-	console.log('Redis Success');
+const Redis = require("ioredis")
+let redisClient = new Redis({
+	host: config.get('redis_host'),
+	port: config.get('redis_port')
 })
-
-// app.use(
-// 	session({
-// 		secret: config.get('secret'),
-// 		resave: false,
-// 	store: new RedisStore({
-// 		client: redisClient,
-// 		ttl: 2 * 24 * 60 * 60
-// 	}),
-// 		saveUninitialized: false,
-// 		cookie: { secure: 'auto' }
-// 	})
-// );
+app.use(
+	session({
+		secret: config.get('secret'),
+		resave: false,
+	store: new RedisStore({
+		client: redisClient,
+		ttl: 2 * 24 * 60 * 60
+	}),
+		saveUninitialized: false,
+		cookie: { secure: 'auto' }
+	})
+);
 
 
 app.use(passport.initialize());
