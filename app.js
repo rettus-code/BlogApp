@@ -55,11 +55,11 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
     console.log(err)
   }
 });
-const redis_client = new Redis({
-    port: config.get('redis_port'),
-  connectTimeout: 10000,
-    host: config.get('redis_host')
-});
+// const redis_client = new Redis({
+//     port: config.get('redis_port'),
+//   connectTimeout: 10000,
+//     host: config.get('redis_host')
+// });
 
 // app.use(
 // 	session({
