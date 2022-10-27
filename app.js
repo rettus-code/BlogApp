@@ -73,7 +73,7 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
 //     host: config.get('redis_host')
 // });
 const { createClient } = require("redis")
-//let redisClient = createClient({ legacyMode: true })
+let redisClient = createClient()
 redisClient.connect().catch(console.error)
 
 app.use(
