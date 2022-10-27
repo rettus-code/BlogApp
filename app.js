@@ -71,11 +71,11 @@ app.use(
 //   connectTimeout: 10000,
 //     host: config.get('redis_host')
 // });
-// const { createClient } = require("redis")
-// let redisClient = createClient(config.get('redis_port'))
-// redisClient.on('ready', ()=> {
-// 	log.info("Redis Success");
-// })
+const { createClient } = require("redis")
+let redisClient = createClient(config.get('redis_port'))
+redisClient.on('ready', ()=> {
+	log.info("Redis Success");
+})
 
 // app.use(
 // 	session({
