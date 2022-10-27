@@ -81,11 +81,9 @@ app.use(
 		secret: config.get('secret'),
 		resave: false,
 	store: new RedisStore({
-		client: redisClient,
-		ttl: 2 * 24 * 60 * 60
+		client: redisClient
 	}),
 		saveUninitialized: false,
-		cookie: { secure: 'auto' }
 	})
 );
 
