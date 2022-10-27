@@ -73,6 +73,7 @@ app.use(
 // });
 const redis = require("redis")
 let redisClient = redis.createClient( {port: config.get('redis_port')});
+console.log(redisClient);
 redisClient.on('ready', ()=> {
 	console.log('Redis Success');
 })
