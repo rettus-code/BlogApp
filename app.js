@@ -61,31 +61,31 @@ const redis_client = new Redis({
     host: config.get('redis_host')
 });
 
-app.use(
-	session({
-		secret: config.get('secret'),
-		resave: false,
-	store: new RedisStore({
-		client: redis_client,
-		ttl: 2 * 24 * 60 * 60
-	}),
-		saveUninitialized: false,
-		cookie: { secure: 'auto' }
-	})
-);
-
 // app.use(
 // 	session({
 // 		secret: config.get('secret'),
 // 		resave: false,
-//     store: MongoStore.create({
-//       mongoUrl: blog_db_url,
-//       ttl: 2 * 24 * 60 * 60
-//     }),
+// 	store: new RedisStore({
+// 		client: redis_client,
+// 		ttl: 2 * 24 * 60 * 60
+// 	}),
 // 		saveUninitialized: false,
 // 		cookie: { secure: 'auto' }
 // 	})
 // );
+
+app.use(
+	session({
+		secret: config.get('secret'),
+		resave: false,
+    store: MongoStore.create({
+      mongoUrl: blog_db_url,
+      ttl: 2 * 24 * 60 * 60
+    }),
+		saveUninitialized: false,
+		cookie: { secure: 'auto' }
+	})
+);
 
 
 
