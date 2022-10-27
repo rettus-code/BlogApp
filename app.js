@@ -78,7 +78,7 @@ redisClient.connect().catch(console.error)
 
 app.use(
 	session({
-		secret: config.get('secret'),
+		secret: "whatever",
 		resave: false,
 	store: new RedisStore({
 		client: redisClient
