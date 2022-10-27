@@ -16,7 +16,6 @@ const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
 //var enforce = require('express-sslify');
-const session = require("express-session")
 let RedisStore = require("connect-redis")(session)
 const User = require("./models/user");
 
