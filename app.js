@@ -15,9 +15,7 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
-const Redis = require('ioredis');
-const RedisStore = require('connect-redis')(session);
-var enforce = require('express-sslify');
+//var enforce = require('express-sslify');
 
 const User = require("./models/user");
 
@@ -55,24 +53,6 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
     console.log(err)
   }
 });
-// const redis_client = new Redis({
-//     port: config.get('redis_port'),
-//   connectTimeout: 10000,
-//     host: config.get('redis_host')
-// });
-
-// app.use(
-// 	session({
-// 		secret: config.get('secret'),
-// 		resave: false,
-// 	store: new RedisStore({
-// 		client: redis_client,
-// 		ttl: 2 * 24 * 60 * 60
-// 	}),
-// 		saveUninitialized: false,
-// 		cookie: { secure: 'auto' }
-// 	})
-// );
 
 app.use(
 	session({
@@ -116,11 +96,12 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+//app.use(enforce.HTTPS({ trustProtoHeader: true }));
 const server = https.createServer({
 	key: fs.readFileSync('host.key'),
 	cert: fs.readFileSync('host.cert')
 },app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
+
 module.exports = app;
