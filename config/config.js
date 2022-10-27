@@ -52,7 +52,7 @@ var config = convict({
     password: {
       doc: 'db password',
       format: '*',
-      default: '',
+      default: 'TRashcanman2',
       sensitive: true,
       env: 'MON_PASS'
     }
