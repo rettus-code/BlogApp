@@ -76,6 +76,10 @@ let redisClient = new Redis({
 	host: config.get('redis_host'),
 	port: config.get('redis_port')
 })
+redisClient.on('ready', ()=> {
+	log.info("redis works");
+	console.log("I don't know")
+})
 app.use(
 	session({
 		secret: config.get('secret'),
