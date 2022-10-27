@@ -65,7 +65,7 @@ app.use(
 		saveUninitialized: false,
 		cookie: { secure: 'auto' }
 	})
-// );
+);
 // const redis_client = new Redis({
 //     port: config.get('redis_port'),
 //   connectTimeout: 10000,
