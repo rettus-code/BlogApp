@@ -67,18 +67,21 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
 // 		cookie: { secure: 'auto' }
 // 	})
 // );
-const redis_client = new Redis({
-    port: config.get('redis_port'),
-  connectTimeout: 10000,
-    host: config.get('redis_host')
-});
+// const redis_client = new Redis({
+//     port: config.get('redis_port'),
+//   connectTimeout: 10000,
+//     host: config.get('redis_host')
+// });
+const { createClient } = require("redis")
+let redisClient = createClient({ legacyMode: true })
+redisClient.connect().catch(console.error)
 
 app.use(
 	session({
 		secret: config.get('secret'),
 		resave: false,
 	store: new RedisStore({
-		client: redis_client,
+		client: redisClient,
 		ttl: 2 * 24 * 60 * 60
 	}),
 		saveUninitialized: false,
