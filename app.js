@@ -17,7 +17,7 @@ const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
 const Redis = require('ioredis');
 const RedisStore = require('connect-redis')(session);
-//var enforce = require('express-sslify');
+var enforce = require('express-sslify');
 
 const User = require("./models/user");
 
@@ -116,7 +116,7 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-//app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 const server = https.createServer({
 	key: fs.readFileSync('host.key'),
 	cert: fs.readFileSync('host.cert')
