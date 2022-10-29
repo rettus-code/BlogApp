@@ -4,6 +4,7 @@ const config = require('./config/config');
 const compression = require ('compression');
 const helmet = require('helmet');
 const https= require("https");
+//const http= require("http");
 const fs = require('fs')
 
 
@@ -125,5 +126,9 @@ const server = https.createServer({
 },app).listen(port,() => {
 console.log('Listening ...Server started on port ' + port);
 })
+
+//const server = http.createServer(app.listen(port,() => { 
+//console.log('Listening ...Server started on port ' + port);
+//}))
 
 module.exports = app;
