@@ -29,7 +29,7 @@ const displayAllPosts = (req, res) => {
 };
 async function displayPost (req, res)  {
 	const requestedPostId = req.params.postId;
-	post_record = redisClient.get(requestedPostId);
+	post_record = await redisClient.get(requestedPostId);
 
 	if(post_record == null){
 		Post.findOne({ _id: requestedPostId }, function(err, post) {
