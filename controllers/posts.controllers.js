@@ -1,5 +1,9 @@
 const Post = require("../models/post");
-
+const Redis = require("ioredis")
+let redisClient = new Redis({
+	host: 'cachetest.yrwyfy.ng.0001.usw2.cache.amazonaws.com',
+	port: 6379
+})
 
 const homeStartingContent =
 	'The home pages lists all the blogs from all the users.';
@@ -25,13 +29,26 @@ const displayAllPosts = (req, res) => {
 };
 async function displayPost (req, res)  {
 	const requestedPostId = req.params.postId;
+	post_record = redisClient.get(requestedPostId);
 
-	Post.findOne({ _id: requestedPostId }, function(err, post) {
-		res.render('post', {
-			title: post.title,
-			content: post.content
+	if(post_record == null){
+		Post.findOne({ _id: requestedPostId }, function(err, post) {
+			redisClient.set(
+				requestedPostId, post_record
+			)
+			res.render('post', {
+				title: post.title,
+				content: post.content
+			});
 		});
-	});
+	} else {
+		console.log(post_record);
+		res.render('post',{
+			title: post_record.title,
+			content: post_record.content
+		})
+	}
+	
 };
 
 module.exports = {
