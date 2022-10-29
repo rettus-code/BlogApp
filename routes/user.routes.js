@@ -33,6 +33,8 @@ router.post(
 	'/register',
 	body('username', 'Username field cannot be empty.').notEmpty(),
 	body('username', 'Username must be between 5-15 characters long.').isLength({ min: 5, max: 15 }),
+	body('password', 'Password must be atleast 8 characters long and have at least 1 lowercase, 1 uppercase 1 number and 1 special Char.').isStrongPassword({  minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1, returnScore: false, pointsPerUnique: 1, pointsPerRepeat: 0.5, pointsForContainingLower: 10, pointsForContainingUpper: 10, pointsForContainingNumber: 10, pointsForContainingSymbol: 10
+	}),
 	body('passwordMatch', 'Passwords do not match, please enter matching passwords.').custom((value, { req }) => {
 		if (value !== req.body.password) {
 			throw new Error('Password confirmation does not match password');
