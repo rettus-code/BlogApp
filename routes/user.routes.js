@@ -39,7 +39,7 @@ router.post(
 	body('passwordMatch', 'Passwords do not match, please enter matching passwords.').custom((value, { req }) => {
 		if (value !== req.body.password) {
 			if(req.body.passwordMatch.includes(' ')){
-				throw new Error('Password connot caontain a space.');
+				throw new Error('Password cannot contain a space.');
 			} else {
 				throw new Error('Password confirmation does not match password');
 			}
