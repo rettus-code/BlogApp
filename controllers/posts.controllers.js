@@ -44,7 +44,7 @@ async function displayPost (req, res)  {
 	} else {
 		console.log(post_record[0].title);
 		res.render('post',{
-			title: post_record.title,
+			title: post_record,
 			content: post_record.content
 		})
 	}
