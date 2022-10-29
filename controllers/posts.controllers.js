@@ -34,7 +34,7 @@ async function displayPost (req, res)  {
 	if(post_record == null){
 		Post.findOne({ _id: requestedPostId }, function(err, post) {
 			redisClient.set(
-				requestedPostId, post_record
+				requestedPostId, post, 3600
 			)
 			res.render('post', {
 				title: post.title,
