@@ -34,7 +34,7 @@ async function displayPost (req, res)  {
 	if(post_record == null){
 		Post.findOne({ _id: requestedPostId }, function(err, post) {
 			redisClient.set(
-				requestedPostId, post.title +" " +post.content
+				requestedPostId, '{"title: "' +post.title +'" content: "' +post.content+'}'
 			)
 			res.render('post', {
 				title: post.title,
@@ -42,7 +42,7 @@ async function displayPost (req, res)  {
 			});
 		});
 	} else {
-		console.log(post_record);
+		console.log(JSON.parse(post_record));
 		res.render('post',{
 			title: post_record,
 			content: post_record.content
