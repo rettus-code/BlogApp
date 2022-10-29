@@ -42,7 +42,7 @@ async function displayPost (req, res)  {
 			});
 		});
 	} else {
-		console.log(post_record.title);
+		console.log(post_record[0].title);
 		res.render('post',{
 			title: post_record.title,
 			content: post_record.content
