@@ -38,7 +38,7 @@ router.post(
 	body('password', 'No spaces allowed').blacklist(" "),
 	body('passwordMatch', 'Passwords do not match, please enter matching passwords.').custom((value, { req }) => {
 		if (value !== req.body.password) {
-			throw new Error('Password confirmation does not match password');
+			throw new Error('Password confirmation does not match password or You have a space in it');
 		}
 		// Indicates the success of this synchronous custom validator
 		return true;
