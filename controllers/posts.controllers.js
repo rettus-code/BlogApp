@@ -42,7 +42,7 @@ async function displayPost (req, res)  {
 			});
 		});
 	} else {
-		console.log(post_record[0].title);
+		console.log(JSON.parse(post_record));
 		res.render('post',{
 			title: post_record,
 			content: post_record.content
