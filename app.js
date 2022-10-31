@@ -9,7 +9,7 @@ const fs = require('fs')
 
 
 
-
+//const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
@@ -54,6 +54,19 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
     console.log(err)
   }
 });
+
+//AWS mysql DB connection
+/* const connection = mysql.createConnection({
+	host: config.get('db.host'),
+	database: config.get('db.db_url'),
+	multipleStatemenets: true
+});
+
+connection.connect((err) ={
+	if(err){
+		console.log(err)
+	  }
+}); */
 
 // app.use(
 // 	session({
