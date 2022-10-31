@@ -3,7 +3,7 @@ const express = require('express');
 const config = require('./config/config');
 const compression = require ('compression');
 const helmet = require('helmet');
-//const https= require("https");
+
 const http= require("http");
 const fs = require('fs')
 
@@ -16,7 +16,7 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoSanitize = require('express-mongo-sanitize');
-//var enforce = require('express-sslify');
+
 let RedisStore = require("connect-redis")(session)
 const User = require("./models/user");
 
@@ -55,36 +55,7 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
   }
 });
 
-//AWS mysql DB connection
-/* const dbConnection = mysql.createConnection({
-	host: config.get('db.host'),
-	database: config.get('db.db_url'),
-	multipleStatemenets: true
-});
 
-connection.connect((err) ={
-	if(err){
-		console.log(err)
-	  }
-}); */
-
-// app.use(
-// 	session({
-// 		secret: config.get('secret'),
-// 		resave: false,
-//     store: MongoStore.create({
-//       mongoUrl: blog_db_url,
-//       ttl: 2 * 24 * 60 * 60
-//     }),
-// 		saveUninitialized: false,
-// 		cookie: { secure: 'auto' }
-// 	})
-// );
-// const redis_client = new Redis({
-//     port: config.get('redis_port'),
-//   connectTimeout: 10000,
-//     host: config.get('redis_host')
-// });
 const Redis = require("ioredis")
 let redisClient = new Redis({
 	host: config.get('redis_host'),
@@ -132,13 +103,7 @@ app.use('/post', postRouter);
 app.all('*', function(req, res) {
   res.redirect("/post/about");
 });
-//app.use(enforce.HTTPS({ trustProtoHeader: true }));
-// const server = https.createServer({
-// 	key: fs.readFileSync('host.key'),
-// 	cert: fs.readFileSync('host.cert')
-// },app).listen(port,() => {
-// console.log('Listening ...Server started on port ' + port);
-// })
+
 
 const server = http.createServer(app.listen(port,() => { 
 console.log('Listening ...Server started on port ' + port);

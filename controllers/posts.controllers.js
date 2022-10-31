@@ -29,8 +29,9 @@ const displayAllPosts = (req, res) => {
 };
 async function displayPost (req, res)  {
 	const requestedPostId = req.params.postId;
+	//Look for post in cache
 	post_record = await redisClient.get(requestedPostId);
-
+	//if post not in cache get from db and send to cach
 	if(post_record == null){
 		Post.findOne({ _id: requestedPostId }, function(err, post) {
 			redisClient.set(
@@ -42,7 +43,6 @@ async function displayPost (req, res)  {
 			});
 		});
 	} else {
-		console.log(post_record);
 		let arr = post_record.split("`");
 		res.render('post',{
 			title: arr[0],
