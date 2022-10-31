@@ -56,7 +56,7 @@ const dbConnection = mongoose.connect(blog_db_url, (err) => {
 });
 
 //AWS mysql DB connection
-/* const connection = mysql.createConnection({
+/* const dbConnection = mysql.createConnection({
 	host: config.get('db.host'),
 	database: config.get('db.db_url'),
 	multipleStatemenets: true

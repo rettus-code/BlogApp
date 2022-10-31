@@ -25,7 +25,7 @@ const userRegister = (req, res, next) => {
 
     console.log(input_username);
 
-    const userExists = connection.query('Select * from users where username=? ', [input_username], function(err, doc) {
+    const userExists = dbConnection.query('Select * from users where username=? ', [input_username], function(err, doc) {
         if (err) {
             console.log(err);
         } else {
@@ -50,7 +50,7 @@ const userRegister = (req, res, next) => {
 } */
 
     //const emailExists = User.exists({ email: input_email }, function (err, doc) {
-    const emailExists = connection.query('Select * from users where email=? ', [input_email], function(err, doc) {
+    const emailExists = dbConnection.query('Select * from users where email=? ', [input_email], function(err, doc) {
         if (err) {
             console.log(err);
         } else {
@@ -69,7 +69,7 @@ const userRegister = (req, res, next) => {
     } else {
         console.log(input_email, input_password, input_username);
         newUser = new User({ email: req.body.email, username: req.body.username });
-        connection.query('Insert into users(email, username, password) values(?,?,?) ', [input_email, input_username, input_password], function(err, results, doc) {
+        dbConnection.query('Insert into users(email, username, password) values(?,?,?) ', [input_email, input_username, input_password], function(err, results, doc) {
             if (err) {
                 console.log(err);
                 res.redirect('/user/register');

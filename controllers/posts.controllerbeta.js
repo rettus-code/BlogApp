@@ -16,7 +16,7 @@ const composePost = (req, res) => {
 };
 
 const displayAllPosts = (req, res) => {
-	connection.query('SELECT * FROM post', function(err, posts) {
+	dbConnection.query('SELECT * FROM post', function(err, posts) {
 		res.render('home', {
 			startingContent: homeStartingContent,
 			posts: posts
@@ -26,7 +26,7 @@ const displayAllPosts = (req, res) => {
 async function displayPost (req, res)  {
 	const requestedPostId = req.params.postId;
 
-	connection.query('SELECT * FROM post where _id = ? ', [requestedPostId], function(err, post) {
+	dbConnection.query('SELECT * FROM post where _id = ? ', [requestedPostId], function(err, post) {
 		res.render('post', {
 			title: post.title,
 			content: post.content
