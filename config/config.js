@@ -28,7 +28,7 @@ var config = convict({
   redis_host: {
     doc: 'redis hostname',
     format: String,
-    default: "cachetest.yrwyfy.ng.0001.usw2.cache.amazonaws.com",
+    default: "",
     env: 'REDIS_HOST',
     arg: 'redishost'
   },
