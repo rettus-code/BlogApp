@@ -46,7 +46,7 @@ var config = convict({
     },
     db_url: {
       format: '*',
-      default: "",
+      default: "mongodb+srv://rettusm:TRashcanman2@cluster0.1pgel8d.mongodb.net/",
       env: 'DB_URL'
     },
     password: {
