@@ -1,0 +1,12 @@
+Michael Rettus Keagan Cantrell
+
+Database: Stayed with mongoDB due to ease of implimentation and focus on getting the app running
+
+Challenging: Attempts to transfer to an AWS RDS. While I was able to setup the database using AWS resources as well as create the tables and values,
+Actually connecting and using said database was unable to be finished. I frequently referenced the websites and hints provided in announcements as well as several other examples of username/post databases.
+The largest help was a class I took over the previous summer quarter CSCI 348 Web Development Fundamentals. The main project of the course was making a functioning blog website using mySQL.
+
+Issues: Was unable to migrate to a AWS RDB while some portions were partially implemented these were left unusued, this also meant that certain features were unchanged/unimplemented such as local-pass. 
+Also had problems with pm2, could not get the command working via sudo on one instance.  
+In the original instance where pm2 returned an empty path. Website defaults to https despite removing .key and .cert files, importing http, and changing the app.listen, it accepts http in the url but when selecting a different page it tries the https protocol. 
+We're using to seperate the title and comment string in the cach so any posts using the char will cause a problem. This can be fixed just need the time to make the changes.
