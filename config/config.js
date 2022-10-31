@@ -36,7 +36,7 @@ var config = convict({
     host: {
       doc: 'Database host name/IP',
       format: '*',
-      default: 'default',
+      default: '',
       env: 'DB_HOST'
     },
     name: {
